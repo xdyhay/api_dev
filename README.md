@@ -6,5 +6,3 @@ Python API Dev
 - SQLAlchemy
 - JWT/OAuth2
 - Alembic
-- Heroku
-- Docker
