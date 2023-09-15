@@ -3,3 +3,6 @@ app/__pycache__/
 backup/
 venv/
 .env
+
+# Local Netlify folder
+.netlify
