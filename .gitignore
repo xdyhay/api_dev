@@ -1,5 +1,9 @@
-.DS_Store
 app/__pycache__/
+app/routes/__pycache__/
+alembic/__pycache__/
+
 backup/
 venv/
+
+.DS_Store
 .env
