@@ -6,6 +6,16 @@ from sqlalchemy.dialects.postgresql import UUID
 from .database import Base
 
 
+class User(Base):
+    __tablename__ = 'users'
+
+    uuid = Column(UUID(as_uuid=True), primary_key=True, index=True, nullable=False, 
+                  server_default=text('gen_random_uuid()'), unique=True)
+    email = Column(String, index=True, nullable=False, unique=True)
+    password = Column(String, nullable=False)
+    created_at = Column(TIMESTAMP(timezone=True), 
+                        nullable=False, server_default=text('current_timestamp'))
+    
 class Post(Base):
     __tablename__ = 'posts'
 
@@ -19,16 +29,6 @@ class Post(Base):
     user_uuid = Column(UUID(as_uuid=True), 
                        ForeignKey('users.uuid', ondelete='CASCADE'), nullable=False)
     user = relationship('User')
-
-class User(Base):
-    __tablename__ = 'users'
-
-    uuid = Column(UUID(as_uuid=True), primary_key=True, index=True, nullable=False, 
-                  server_default=text('gen_random_uuid()'), unique=True)
-    email = Column(String, index=True, nullable=False, unique=True)
-    password = Column(String, nullable=False)
-    created_at = Column(TIMESTAMP(timezone=True), 
-                        nullable=False, server_default=text('current_timestamp'))
 
 class Like(Base):
     __tablename__ = 'likes'

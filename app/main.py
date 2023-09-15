@@ -4,7 +4,10 @@ from . import models
 from .database import engine
 from .routers import post, user, like, auth
 
-models.Base.metadata.create_all(bind=engine)
+"""The Base class from models.py is imported and then used to create the tables in the database.
+Comment out the following line to prevent the tables from being created.
+Alembic will generate the SQL to create the tables"""
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
