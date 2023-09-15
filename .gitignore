@@ -1,11 +1,11 @@
+.DS_Store
+.env
+
 app/__pycache__/
-app/routes/__pycache__/
+app/routers/__pycache__/
 alembic/__pycache__/
 
 backup/
 venv/
-
-.DS_Store
-.env
 
 Dockerfile
