@@ -1,11 +1,12 @@
-.DS_Store
-.env
+**/__pycache__
 
-app/__pycache__/
-app/routers/__pycache__/
-alembic/__pycache__/
+.DS_Store
 
 backup/
 venv/
 
+.env
+.env.*
+
 Dockerfile
+docker-compose.yml
