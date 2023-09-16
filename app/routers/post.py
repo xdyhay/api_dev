@@ -11,6 +11,10 @@ router  = APIRouter(prefix='/posts', tags=['Posts'])
 def get_posts(db: Session = Depends(database.get_db), current_user: UUID = Depends(oauth2.get_current_user), query_params: schemas.QueryParams = Depends()):
     query = db.query(models.Post)
 
+    if not query.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'No post found')
+
     query = utils.apply_query_params(query, query_params)
 
     return query.all()
@@ -22,6 +26,10 @@ def get_post_likes_count(db: Session = Depends(database.get_db), current_user: U
                     .group_by(models.Post.id)
     
     query = utils.apply_query_params(query, query_params)
+
+    if not query.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f'No post found')
     
     posts_out_list, likes_out_list = zip(*query.all())
     post_like_out_list = [schemas.PostLikeOut(post=post, likes=like) for post, like in zip(posts_out_list, likes_out_list)]
@@ -53,7 +61,7 @@ def get_latest_post(db: Session = Depends(database.get_db), current_user: UUID =
     post = query.order_by(models.Post.created_at.desc()).first()
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f'Post with id {id} not found')
+                            detail=f'No post found')
     
     post_like_out = schemas.PostLikeOut(post=post[0], likes=post[1])
     return post_like_out
