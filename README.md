@@ -6,4 +6,6 @@ Python API Dev
 - SQLAlchemy
 - JWT/OAuth2
 - Alembic
+  - `alembic upgrade head` migration in dev. Not in Docker
 - Docker
+  - `docker-compose up -d`
