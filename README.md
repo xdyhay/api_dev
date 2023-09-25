@@ -1,11 +1,19 @@
-Python API Dev Practice
+API Project
 - FastAPI
+  - Schemas
+  - CRUD
+  - Routers
 - Postman
 - PostgreSQL
+  - Psycopg2
+    - `cur.execute(<query>)`
 - SQL
-- SQLAlchemy
-- JWT/OAuth2
+- SQLAlchemy (ORM)
+  - Models
+  - `db.query(<...>)`
+- JWT / Oauth2 Token
 - Alembic
 - Docker
+  - `docker run` -> `docker compose`
 - Pytest
 - CI/CD
